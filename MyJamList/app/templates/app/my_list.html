@@ -1,0 +1,59 @@
+{% extends "app/layout.html" %}
+
+
+{% block content %}
+
+
+
+<h2>{{ title }}.</h2>
+<h3>{{ message }}</h3>
+
+<a href="{% url 'upload_song' %}" role="button" class="btn btn-primary btn-large">Upload a song</a>
+<a href="{% url 'update_song' %}" role="button" class="btn btn-primary btn-large">Update rating</a>
+
+<div class="player">
+    <h4>Jam along</h4>
+    <h5 id="songTitle"></h5>
+    <h5><a href="" id="songChords"></a></h5>
+    <button id="prevButton" class="btn button-default">[ << ]</button>
+    <button id="playPauseButton" class="btn btn-primary btn-large">[ > ]</button>
+    <button id="nextButton" class="btn button-default">[ >> ]</button>
+    <audio id="audioPlayer">
+        Your browser does not support the audio element.
+    </audio>
+</div>
+
+<table class="table">
+    <thead class="thead">
+        <tr class="tr">
+            <th class="th">#</th>
+            <th class="th">Title</th>
+            <th class="th">Rating</th>
+            <th class="th">Chords</th>
+            <th class="th">Play</th>
+        </tr>
+    </thead>
+    <tbody class="tbody" id="songList">
+        {% for song in songs %}
+        <tr class="tr" data-src="{{ song.file.url }}">
+            <td class="td"> {{ forloop.counter }}</td>
+            <td class="td" id="title">{{ song.title }}</td>
+            <td class="td">{{ song.rating }}</td>
+            <td class="td"><a href="{{ song.link }}" class="chords-link" target="_blank" rel="noopener noreferrer">Chords</a></td>
+            <td class="td">
+                {% if song.file %}
+                <audio>
+                    <source src="{{ song.file.url }}" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <button id="playPauseButtonIndiv" class="btn btn-primary btn-large">[ > ]</button>
+                {% else %}
+                No file
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

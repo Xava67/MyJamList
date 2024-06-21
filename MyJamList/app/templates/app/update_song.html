@@ -1,0 +1,34 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h2>Update Song Rating</h2>
+<form id="updateSongForm" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>
+
+<div id="formMessage"></div>
+<br>
+<a href="{% url 'my_list' %}" role="button" class="btn btn-primary btn-large">Back to My List</a>
+
+<script>
+    $(document).ready(function() {
+        $('#updateSongForm').on('submit', function(event) {
+            event.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'update_song' %}",
+                data: $(this).serialize(),
+                success: function(response) {
+                    $('#formMessage').html('<p>Song updated successfully!</p>');
+                },
+                error: function(response) {
+                    $('#formMessage').html('<p>An error occurred. Please try again.</p>');
+                }
+            });
+        });
+    });
+</script>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div class="jumbotron">
+    <h1>MyJamList</h1>
+    <p class="lead">MyJamList is a personal use website that allows you to form and manage playlists of songs you want to learn on the guitar.</p>
+    <p><a href="https://www.ultimate-guitar.com/" class="btn btn-primary btn-large" target="_blank" rel="noopener noreferrer">Ultimate Guitar &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Getting started</h2>
+        <p>
+            To form a playlist, simply upload an .mp3 (or any audio format file), assign it a level of
+            comprehension, the website will automatically assign the songs to a specific playlist.
+        </p>
+        <p><a class="btn btn-default" href="https://www.spotify.com/" target="_blank" rel="noopener noreferrer">Spotify &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Get more insight</h2>
+        <p>To learn a song, you need to play it over and over again, play along sheets will be a perfect tool to keep the learning curve as steep as possible.</p>
+        <p><a class="btn btn-default" href="https://chordify.net/" target="_blank" rel="noopener noreferrer">Chordify &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Guitar learning basics</h2>
+        <p>For some guitar tips, please refer to the provided pdf.</p>
+        <p><a class="btn btn-default" href="{% url 'pdf_view' %}" target="_blank" rel="noopener noreferrer">Guitar basics &raquo;</a></p>
+    </div>
+</div>
+
+{% endblock %}
